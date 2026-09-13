@@ -8,8 +8,8 @@ export class F1AudioEngine {
   constructor() {
     this.audio = new Audio('/f1_engine_sound.mp3');
     this.audio.preload = 'auto';
-    this.audio.loop = false;
-    this.isMuted = false; // Unmuted by default on start
+    this.audio.loop = true; // Loops seamlessly during loading until launch
+    this.isMuted = false;
     this.isPlaying = false;
     this.hasUserInteracted = false;
 
@@ -22,7 +22,7 @@ export class F1AudioEngine {
   }
 
   initAudioSettings() {
-    this.audio.volume = 0.9;
+    this.audio.volume = 0.95;
   }
 
   initControls() {
@@ -41,25 +41,26 @@ export class F1AudioEngine {
   }
 
   /**
-   * Browser security requires a user gesture before unmuted audio can play in some browsers.
-   * We attach listeners across pointer, touch, keyboard, and click events so the sound starts
-   * instantly the moment the user touches or interacts with the page.
+   * Browser Autoplay Unlock:
+   * 1. Attempts immediate autoplay right as the page and loader initialize.
+   * 2. If the browser blocks initial unmuted audio due to autoplay restrictions,
+   *    listens for any touch/click/key/scroll gesture to unlock audio instantly.
    */
   setupAutoplayUnlock() {
     const unlock = () => {
       if (!this.hasUserInteracted) {
         this.hasUserInteracted = true;
-        if (!this.isMuted && !this.isPlaying) {
-          this.play();
-        }
+      }
+      if (!this.isMuted && !this.isPlaying) {
+        this.play();
       }
       events.forEach(evt => window.removeEventListener(evt, unlock));
     };
 
-    const events = ['pointerdown', 'mousedown', 'touchstart', 'keydown', 'click', 'wheel'];
+    const events = ['pointerdown', 'mousedown', 'touchstart', 'touchend', 'keydown', 'click', 'scroll', 'wheel'];
     events.forEach(evt => window.addEventListener(evt, unlock, { passive: true, once: true }));
 
-    // Attempt instant autoplay right away
+    // Instant autoplay trigger
     this.play();
   }
 
@@ -69,18 +70,17 @@ export class F1AudioEngine {
   play() {
     if (this.isMuted) return;
 
-    this.audio.currentTime = 0;
-    this.audio.volume = 0.9;
+    this.audio.volume = 0.95;
     
     const playPromise = this.audio.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
         this.isPlaying = true;
         this.updateButtons(true);
-      }).catch(err => {
-        // Autoplay policy prevented immediate playback until user touches/clicks the page
+      }).catch((err) => {
+        // Autoplay policy prevented immediate playback until first gesture
         this.isPlaying = false;
-        this.updateButtons(true); // Keep button in ON state so user knows audio is enabled
+        this.updateButtons(true); // Keep button indicator ON so user knows audio is ready
       });
     }
   }
@@ -106,7 +106,7 @@ export class F1AudioEngine {
       this.updateButtons(false);
     } else {
       this.audio.currentTime = 0;
-      this.audio.volume = 0.9;
+      this.audio.volume = 0.95;
       this.audio.play().then(() => {
         this.isPlaying = true;
         this.updateButtons(true);
@@ -120,7 +120,7 @@ export class F1AudioEngine {
   updateRpm(rpm) {
     if (this.isMuted || !this.isPlaying) return;
 
-    // Scale playbackRate subtly between 0.85x and 1.35x based on RPM
+    // Scale playbackRate smoothly between 0.85x and 1.35x based on RPM
     const rate = 0.85 + (rpm / 16000) * 0.5;
     this.audio.playbackRate = Math.min(Math.max(rate, 0.75), 1.5);
   }
@@ -139,8 +139,41 @@ export class F1AudioEngine {
     }
   }
 
-  playBeep() {}
-  playLaunchSequence() {}
+  playBeep(freq = 1000, duration = 0.08) {
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    } catch (e) {}
+  }
+
+  playLaunchSequence() {
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(1400, ctx.currentTime);
+      gain.gain.setValueAtTime(0.4, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.3);
+    } catch (e) {}
+  }
 
   updateButtons(active) {
     const btn = document.getElementById('btn-audio-toggle');
