@@ -1,6 +1,6 @@
 /**
  * Telemetry Panels Manager - Exact Reference UI
- * Handles the sequential Systems Check list verification,
+ * Handles the sequential Systems Check list verification for both desktop and mobile views,
  * dynamic spinner transition, and telemetry states.
  */
 
@@ -13,6 +13,11 @@ export class TelemetryManager {
     this.checkTrackReady = document.getElementById('chk-track-ready');
     this.spinnerTrack = document.getElementById('track-ready-spinner');
     this.markTrack = document.getElementById('track-ready-check');
+
+    // Mobile specific indicators
+    this.mCheckEngine = document.getElementById('m-chk-engine');
+    this.mCheckSystems = document.getElementById('m-chk-systems');
+    this.mCheckNetwork = document.getElementById('m-chk-network');
   }
 
   /**
@@ -22,30 +27,30 @@ export class TelemetryManager {
     const pct = progress * 100;
 
     // 1. Engine Check (at 20%)
-    if (this.checkEngine) {
-      if (pct >= 20) {
-        this.checkEngine.classList.add('verified');
-      } else {
-        this.checkEngine.classList.remove('verified');
-      }
+    if (pct >= 20) {
+      if (this.checkEngine) this.checkEngine.classList.add('verified');
+      if (this.mCheckEngine) this.mCheckEngine.classList.add('verified');
+    } else {
+      if (this.checkEngine) this.checkEngine.classList.remove('verified');
+      if (this.mCheckEngine) this.mCheckEngine.classList.remove('verified');
     }
 
     // 2. Systems Check (at 45%)
-    if (this.checkSystems) {
-      if (pct >= 45) {
-        this.checkSystems.classList.add('verified');
-      } else {
-        this.checkSystems.classList.remove('verified');
-      }
+    if (pct >= 45) {
+      if (this.checkSystems) this.checkSystems.classList.add('verified');
+      if (this.mCheckSystems) this.mCheckSystems.classList.add('verified');
+    } else {
+      if (this.checkSystems) this.checkSystems.classList.remove('verified');
+      if (this.mCheckSystems) this.mCheckSystems.classList.remove('verified');
     }
 
     // 3. Network Check (at 65%)
-    if (this.checkNetwork) {
-      if (pct >= 65) {
-        this.checkNetwork.classList.add('verified');
-      } else {
-        this.checkNetwork.classList.remove('verified');
-      }
+    if (pct >= 65) {
+      if (this.checkNetwork) this.checkNetwork.classList.add('verified');
+      if (this.mCheckNetwork) this.mCheckNetwork.classList.add('verified');
+    } else {
+      if (this.checkNetwork) this.checkNetwork.classList.remove('verified');
+      if (this.mCheckNetwork) this.mCheckNetwork.classList.remove('verified');
     }
 
     // 4. Assets Check (at 85%)
@@ -72,7 +77,7 @@ export class TelemetryManager {
   }
 
   reset() {
-    [this.checkEngine, this.checkSystems, this.checkNetwork, this.checkAssets, this.checkTrackReady].forEach(item => {
+    [this.checkEngine, this.checkSystems, this.checkNetwork, this.checkAssets, this.checkTrackReady, this.mCheckEngine, this.mCheckSystems, this.mCheckNetwork].forEach(item => {
       if (item) item.classList.remove('verified');
     });
     if (this.spinnerTrack) this.spinnerTrack.style.display = 'inline-block';

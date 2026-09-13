@@ -125,6 +125,20 @@
   line-height: 1;
 }
 
+.brand-o-accent {
+  color: #ff1801;
+  text-shadow: 0 0 16px rgba(255, 24, 1, 0.8), 0 0 30px rgba(255, 24, 1, 0.4);
+}
+
+/* Desktop vs Mobile Default Visibility */
+.mobile-only-hud-left,
+.mobile-only-hud-right,
+.mobile-race-slogan,
+.mobile-bottom-tagline {
+  display: none;
+}
+
+
 /* F1 Red Racing Checkered Flag Element */
 .racing-checkered-flag {
   display: inline-grid;
@@ -620,34 +634,342 @@
   gap: 10px;
 }
 
-/* Responsive Scaling */
-@media (max-width: 1100px) {
+/* ==========================================================
+   4. RESPONSIVE LAYOUT (DESKTOP & MOBILE EXACT REFERENCE)
+   ========================================================== */
+@media (max-width: 1024px) {
   .exact-main-stage {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  .telemetry-card-exact {
-    display: none;
+  .desktop-only-card {
+    display: none !important;
   }
-  .flanking-slogans-row {
-    display: none;
-  }
-  .tachometer-center-exact {
-    width: 360px;
-    height: 360px;
-  }
-  .gauge-housing {
-    width: 340px;
-    height: 340px;
-  }
-  .gauge-dial-inner-ring {
-    width: 280px;
-    height: 280px;
-  }
-  .exact-rpm-val {
-    font-size: 2.2rem;
-  }
-  .gauge-bottom-progress-bar-container {
-    margin-top: 320px;
+  .desktop-only-row {
+    display: none !important;
   }
 }
+
+@media (max-width: 768px) {
+  #f1-loader {
+    background-image: 
+      radial-gradient(ellipse at 50% 25%, rgba(20, 0, 0, 0.4) 0%, rgba(3, 4, 6, 0.75) 55%, #030406 95%),
+      url('/f1_mobile_car_bg.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    padding: max(14px, env(safe-area-inset-top)) 16px max(14px, env(safe-area-inset-bottom));
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  /* Hide Desktop specific components */
+  .desktop-only-meta,
+  .desktop-only-card,
+  .desktop-only-row {
+    display: none !important;
+  }
+
+  /* Show Mobile specific components */
+  .mobile-only-hud-left,
+  .mobile-only-hud-right,
+  .mobile-race-slogan,
+  .mobile-bottom-tagline {
+    display: flex !important;
+  }
+
+  /* Top Header Flex Container on Mobile */
+  .exact-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 20;
+    margin-top: 4px;
+  }
+
+  /* Top Status Rows (Left & Right Spanning across the screen) */
+  .header-meta-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 25;
+  }
+
+  .header-meta-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    align-items: flex-end;
+    text-align: right;
+    z-index: 25;
+  }
+
+  /* Mobile Top Left HUD */
+  .mobile-only-hud-left {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    line-height: 1.25;
+    letter-spacing: 0.12em;
+    color: #8c94a8;
+  }
+
+  .mobile-only-hud-left .m-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .mobile-only-hud-left .val-white {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .mobile-only-hud-left .val-green {
+    color: #00e676;
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(0, 230, 118, 0.5);
+  }
+
+  .mobile-only-hud-left .val-red {
+    color: #ff1801;
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(255, 24, 1, 0.5);
+  }
+
+  /* Mobile Top Right Systems Check HUD */
+  .mobile-only-hud-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    line-height: 1.25;
+    letter-spacing: 0.12em;
+    color: #7b8296;
+    text-align: right;
+  }
+
+  .mobile-only-hud-right .m-title {
+    color: #a8b0c4;
+    font-weight: 700;
+  }
+
+  .mobile-only-hud-right .m-subtitle {
+    color: #8c94a8;
+    margin-bottom: 2px;
+  }
+
+  .mobile-only-hud-right .m-chk {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #687084;
+    transition: color 0.2s ease;
+  }
+
+  .mobile-only-hud-right .m-chk.verified {
+    color: #e5ebf8;
+  }
+
+  .mobile-only-hud-right .m-chk .check-mark {
+    color: #00e676;
+    font-weight: 900;
+    text-shadow: 0 0 6px rgba(0, 230, 118, 0.6);
+  }
+
+  /* Mobile Brand Center */
+  .header-brand-center {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .brand-main-title {
+    font-size: 2.15rem;
+    letter-spacing: 0.08em;
+  }
+
+  .racing-checkered-flag {
+    grid-template-columns: repeat(4, 5px);
+    grid-template-rows: repeat(2, 5px);
+    gap: 1px;
+  }
+
+  .flag-box {
+    width: 5px;
+    height: 5px;
+  }
+
+  .brand-subtitle {
+    font-size: 0.74rem;
+    letter-spacing: 0.28em;
+    margin-top: 3px;
+  }
+
+  .brand-tagline {
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    margin-top: 2px;
+  }
+
+  /* Mobile Main Stage & Tachometer Scaling */
+  .exact-main-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 6px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .tachometer-center-exact {
+    width: 320px;
+    height: 320px;
+    position: relative;
+  }
+
+  .gauge-housing {
+    width: 300px;
+    height: 300px;
+  }
+
+  .gauge-dial-inner-ring {
+    width: 240px;
+    height: 240px;
+  }
+
+  .gauge-svg-exact {
+    width: 320px;
+    height: 320px;
+  }
+
+  .needle-pointer {
+    height: 125px;
+  }
+
+  .needle-pointer::before {
+    width: 6px;
+    height: 6px;
+    top: -3px;
+  }
+
+  .exact-rpm-val {
+    font-size: 2.05rem;
+  }
+
+  .exact-rpm-unit {
+    font-size: 0.68rem;
+    margin-top: 1px;
+    margin-bottom: 6px;
+  }
+
+  .exact-pct-val {
+    font-size: 1.7rem;
+  }
+
+  .exact-loading-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    margin-top: 2px;
+  }
+
+  .gauge-bottom-progress-bar-container {
+    bottom: 22px;
+    gap: 4px;
+  }
+
+  .pill-progress-track {
+    width: 190px;
+    height: 6px;
+  }
+
+  .pill-progress-fill::after {
+    width: 6px;
+    height: 6px;
+    right: -2px;
+  }
+
+  .pill-slogan {
+    display: none;
+  }
+
+  /* Mobile Right Race Slogan (Exact Reference) */
+  .mobile-race-slogan {
+    position: absolute;
+    right: 14px;
+    top: 365px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    transform: rotate(-6deg);
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    color: #ff1801;
+    font-size: 1.22rem;
+    line-height: 1.08;
+    letter-spacing: 0.05em;
+    text-shadow: 
+      0 0 10px #ff1801,
+      0 0 25px rgba(255, 24, 1, 0.7);
+    pointer-events: none;
+    z-index: 15;
+  }
+
+  /* Mobile Bottom Tagline */
+  .mobile-bottom-tagline {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Rajdhani', var(--font-mono), sans-serif;
+    font-size: 0.74rem;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 0.28em;
+    color: #8c95a8;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 15;
+    pointer-events: none;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  }
+
+  /* Mobile Bottom Action Buttons */
+  .exact-bottom-actions {
+    bottom: 42px;
+    right: 50%;
+    transform: translateX(50%);
+    gap: 8px;
+    width: 90%;
+    max-width: 320px;
+    justify-content: center;
+    opacity: 0.85;
+  }
+
+  .btn-telemetry {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .tachometer-center-exact {
+    width: 280px;
+    height: 280px;
+    transform: scale(0.92);
+  }
+  .brand-main-title {
+    font-size: 1.85rem;
+  }
+  .mobile-race-slogan {
+    font-size: 1.05rem;
+    top: 330px;
+  }
+}
+
