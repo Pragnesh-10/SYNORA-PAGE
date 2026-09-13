@@ -1,0 +1,79 @@
+/* Reset & Base Variables */
+:root {
+  --bg-primary: #07080b;
+  --bg-secondary: #0c0e14;
+  --bg-tertiary: #131722;
+  --carbon-dark: #090a0d;
+  --carbon-light: #161922;
+  
+  --f1-red: #ff1801;
+  --f1-red-glow: rgba(255, 24, 1, 0.45);
+  --f1-red-dim: rgba(255, 24, 1, 0.15);
+  
+  --telemetry-cyan: #00f0ff;
+  --telemetry-cyan-glow: rgba(0, 240, 255, 0.4);
+  --telemetry-cyan-dim: rgba(0, 240, 255, 0.12);
+  
+  --telemetry-green: #00e676;
+  --telemetry-green-glow: rgba(0, 230, 118, 0.4);
+  
+  --telemetry-yellow: #ffb800;
+  --telemetry-yellow-glow: rgba(255, 184, 0, 0.4);
+  
+  --telemetry-purple: #b537f2;
+  --telemetry-purple-glow: rgba(181, 55, 242, 0.4);
+
+  --text-primary: #ffffff;
+  --text-secondary: #9aa0b0;
+  --text-muted: #53596b;
+  --text-bright: #f0f4fc;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(0, 240, 255, 0.3);
+  --border-redline: rgba(255, 24, 1, 0.6);
+
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-tech: 'Orbitron', -apple-system, sans-serif;
+  --font-display: 'Chakra Petch', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}

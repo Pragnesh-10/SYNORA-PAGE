@@ -1,0 +1,182 @@
+/* Motorsport Carbon Fiber & Technical HUD Theming */
+
+/* Authentic Carbon Fiber Weave */
+.carbon-panel {
+  background: 
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, #111 10px),
+    #181818;
+  background-size: 20px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.8),
+    0 10px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+/* Subtle dark carbon weave background for full-screen */
+.carbon-bg {
+  background-color: #07080b;
+  background-image: 
+    radial-gradient(ellipse at 50% 50%, rgba(20, 24, 36, 0.65) 0%, rgba(5, 6, 8, 0.95) 100%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.015) 75%, rgba(255, 255, 255, 0.015)),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.015) 75%, rgba(255, 255, 255, 0.015));
+  background-size: 100% 100%, 8px 8px, 8px 8px;
+  background-position: 0 0, 0 0, 4px 4px;
+}
+
+/* Scanline / Telemetry Grid Overlay */
+.telemetry-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+  z-index: 1;
+}
+
+/* Technical Chamfered Box */
+.hud-card {
+  position: relative;
+  background: rgba(12, 14, 20, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  clip-path: polygon(
+    0 8px, 
+    8px 0, 
+    calc(100% - 8px) 0, 
+    100% 8px, 
+    100% calc(100% - 8px), 
+    calc(100% - 8px) 100%, 
+    8px 100%, 
+    0 calc(100% - 8px)
+  );
+  transition: all var(--transition-smooth);
+}
+
+.hud-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.5), transparent);
+}
+
+.hud-card-redline::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 24, 1, 0.8), transparent);
+}
+
+/* Motorsport Corner Brackets */
+.corner-bracket {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--telemetry-cyan);
+  pointer-events: none;
+}
+.corner-bracket.tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.corner-bracket.tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+.corner-bracket.bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
+.corner-bracket.br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+/* Glowing Text Utilities */
+.glow-cyan {
+  color: var(--telemetry-cyan);
+  text-shadow: 0 0 10px var(--telemetry-cyan-glow), 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.glow-red {
+  color: var(--f1-red);
+  text-shadow: 0 0 12px var(--f1-red-glow), 0 0 24px rgba(255, 24, 1, 0.3);
+}
+
+.glow-green {
+  color: var(--telemetry-green);
+  text-shadow: 0 0 10px var(--telemetry-green-glow);
+}
+
+.glow-yellow {
+  color: var(--telemetry-yellow);
+  text-shadow: 0 0 10px var(--telemetry-yellow-glow);
+}
+
+.glow-purple {
+  color: var(--telemetry-purple);
+  text-shadow: 0 0 10px var(--telemetry-purple-glow);
+}
+
+/* Status Badges */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.status-pill.active-green {
+  color: var(--telemetry-green);
+  border-color: rgba(0, 230, 118, 0.35);
+  background: rgba(0, 230, 118, 0.08);
+}
+
+.status-pill.active-red {
+  color: var(--f1-red);
+  border-color: rgba(255, 24, 1, 0.4);
+  background: rgba(255, 24, 1, 0.08);
+}
+
+.status-pill.active-cyan {
+  color: var(--telemetry-cyan);
+  border-color: rgba(0, 240, 255, 0.35);
+  background: rgba(0, 240, 255, 0.08);
+}
+
+/* Technical Pulsing Indicators */
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.pulse-dot.green {
+  background: var(--telemetry-green);
+  box-shadow: 0 0 8px var(--telemetry-green);
+  animation: pulseGreen 1.2s infinite ease-in-out;
+}
+
+.pulse-dot.red {
+  background: var(--f1-red);
+  box-shadow: 0 0 8px var(--f1-red);
+  animation: pulseRed 0.8s infinite ease-in-out;
+}
+
+@keyframes pulseGreen {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+@keyframes pulseRed {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.8); }
+}

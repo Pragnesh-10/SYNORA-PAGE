@@ -1,0 +1,618 @@
+/* ==========================================================
+   F1 MOTORSPORTS LOADING SCREEN - SYNORA EXACT REFERENCE UI
+   ========================================================== */
+
+#f1-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background-color: #030406;
+  background-image: 
+    radial-gradient(ellipse at 50% 30%, rgba(30, 0, 0, 0.4) 0%, rgba(3, 4, 6, 0.85) 65%, #030406 100%),
+    url('/f1_pitlane_bg.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 44px 20px;
+  overflow: hidden;
+  user-select: none;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.75s cubic-bezier(0.8, 0, 0.2, 1), transform 0.75s cubic-bezier(0.8, 0, 0.2, 1), visibility 0.75s;
+}
+
+#f1-loader.loader-hidden {
+  opacity: 0;
+  transform: scale(1.05);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Redline Blast Launch Animation */
+#f1-loader::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250vw;
+  height: 250vh;
+  transform: translate(-50%, -50%) scale(0);
+  background: radial-gradient(circle, rgba(255, 24, 1, 0.4) 0%, rgba(0, 0, 0, 0.8) 50%, transparent 80%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.5s ease-out;
+  z-index: 100;
+}
+
+#f1-loader.launching::after {
+  transform: translate(-50%, -50%) scale(1.2);
+  opacity: 1;
+}
+
+/* Vignette & Ambient Top Darkness */
+.loader-vignette-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(180deg, rgba(3, 4, 6, 0.88) 0%, rgba(3, 4, 6, 0.45) 50%, rgba(3, 4, 6, 0.2) 80%, rgba(3, 4, 6, 0.85) 100%),
+    radial-gradient(circle at 50% 40%, transparent 40%, rgba(3, 4, 6, 0.75) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================
+   1. TOP HEADER ROW
+   ========================================================== */
+.exact-header {
+  width: 100%;
+  max-width: 1380px;
+  display: grid;
+  grid-template-columns: 240px 1fr 240px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 10;
+}
+
+/* Top Left Meta */
+.header-meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #72798e;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+}
+
+.header-meta-left .app-title {
+  color: #c4cad8;
+  font-weight: 700;
+  font-size: 0.74rem;
+  margin-bottom: 2px;
+}
+
+/* Top Center Main Brand Logo */
+.header-brand-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.brand-main-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+  font-size: 2.7rem;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  line-height: 1;
+}
+
+/* F1 Red Racing Checkered Flag Element */
+.racing-checkered-flag {
+  display: inline-grid;
+  grid-template-columns: repeat(4, 7px);
+  grid-template-rows: repeat(2, 7px);
+  gap: 1.5px;
+  transform: skewX(-16deg);
+  margin-left: 2px;
+}
+
+.flag-box {
+  width: 7px;
+  height: 7px;
+  background-color: #ff1801;
+}
+.flag-box.dim {
+  background-color: #610900;
+}
+
+.brand-subtitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: #e2e6f0;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.brand-tagline {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.22em;
+  color: #8c94a8;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* Top Right Meta */
+.header-meta-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #72798e;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.slash-accent {
+  color: var(--f1-red);
+  font-weight: 900;
+}
+
+/* ==========================================================
+   2. MAIN INTERACTIVE TELEMETRY & TACHOMETER GRID
+   ========================================================== */
+.exact-main-stage {
+  width: 100%;
+  max-width: 1420px;
+  display: grid;
+  grid-template-columns: 260px 1fr 260px;
+  align-items: center;
+  justify-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 10;
+  margin: auto 0 0;
+}
+
+/* Left & Right Telemetry Cards */
+.telemetry-card-exact {
+  width: 100%;
+  background: rgba(10, 12, 16, 0.78);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 16px 18px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+/* Left Panel: Circuit Track Map & Telemetry */
+.track-card-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.track-location-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #e5ebf8;
+  letter-spacing: 0.1em;
+}
+
+.track-location-country {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #686f82;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.track-svg-container {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0 12px;
+  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.3));
+}
+
+.track-telemetry-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+}
+
+.track-data-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #7b8296;
+}
+
+.track-data-row .val-green {
+  color: #00e676;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0, 230, 118, 0.4);
+}
+
+.track-data-row .val-yellow {
+  color: #ffb800;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255, 184, 0, 0.4);
+}
+
+.track-data-row .val-red {
+  color: #ff1801;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255, 24, 1, 0.4);
+}
+
+/* Right Panel: Systems Check List */
+.systems-card-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #e5ebf8;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.systems-check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+}
+
+.system-check-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #8c94a8;
+  transition: color 0.2s ease;
+}
+
+.system-check-item.verified {
+  color: #f0f4fc;
+}
+
+.system-check-item .check-mark {
+  color: #00e676;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-shadow: 0 0 8px rgba(0, 230, 118, 0.5);
+}
+
+/* Animated spinner for track ready */
+.system-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 24, 1, 0.25);
+  border-top-color: #ff1801;
+  border-radius: 50%;
+  animation: spinnerRotate 0.8s infinite linear;
+}
+
+@keyframes spinnerRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================
+   CENTER: 16,000 RPM CIRCULAR TACHOMETER GAUGE
+   ========================================================== */
+.tachometer-center-exact {
+  position: relative;
+  width: 480px;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gauge Dial Housing */
+.gauge-housing {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(10, 12, 17, 0.95) 55%, rgba(18, 22, 30, 0.85) 75%, #1c212c 90%, rgba(5, 6, 8, 0.9) 100%);
+  box-shadow: 
+    0 0 40px rgba(0, 0, 0, 0.95),
+    inset 0 0 25px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Inner Dial Shadow Ring */
+.gauge-dial-inner-ring {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #080a0e 0%, #0c0e14 80%, #06070a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* SVG Elements Layer */
+.gauge-svg-exact {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+/* Needle Layer */
+.gauge-needle-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.needle-pointer {
+  position: absolute;
+  width: 4px;
+  height: 185px;
+  bottom: 50%;
+  left: calc(50% - 2px);
+  transform-origin: 50% 100%;
+  transform: rotate(-135deg); /* 0 RPM default */
+  will-change: transform;
+}
+
+.needle-body-glow {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(255, 24, 1, 0.5) 0%, #ff1801 50%, #ffffff 100%);
+  border-radius: 2px;
+  box-shadow: 
+    0 0 12px #ff1801,
+    0 0 24px rgba(255, 24, 1, 0.6),
+    0 0 35px rgba(255, 24, 1, 0.3);
+}
+
+/* Central Digital Readout */
+.gauge-center-text-stack {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+  text-align: center;
+  pointer-events: none;
+}
+
+.exact-rpm-val {
+  font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  font-style: italic;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.exact-rpm-unit {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #8c94a8;
+  letter-spacing: 0.15em;
+  margin-top: 2px;
+  margin-bottom: 12px;
+}
+
+.exact-pct-val {
+  font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  font-style: italic;
+  color: #ffffff;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.exact-loading-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  color: #7b8296;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Below Gauge: Capsule Progress Bar & Slogan */
+.gauge-bottom-progress-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 420px;
+  z-index: 8;
+  width: 100%;
+}
+
+.pill-progress-track {
+  width: 290px;
+  height: 8px;
+  background: rgba(20, 24, 32, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+
+.pill-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff3300 0%, #ff1801 80%, #ffffff 100%);
+  border-radius: 20px;
+  box-shadow: 0 0 10px #ff1801, 0 0 20px rgba(255, 24, 1, 0.6);
+  transition: width 0.12s ease-out;
+}
+
+.pill-slogan {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: #b5bccf;
+  text-transform: uppercase;
+}
+
+/* ==========================================================
+   3. FLANKING SLOGANS & LABELS (MATCHING REFERENCE)
+   ========================================================== */
+.flanking-slogans-row {
+  width: 100%;
+  max-width: 1380px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 10;
+  margin-top: 10px;
+}
+
+.flank-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #72798e;
+  letter-spacing: 0.12em;
+}
+
+.flank-left .passion-block {
+  font-style: italic;
+}
+
+.flank-left .pole-block {
+  color: #a2aabf;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.flank-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #72798e;
+  letter-spacing: 0.12em;
+  text-align: right;
+}
+
+.flank-right .future-block {
+  font-style: italic;
+}
+
+.flank-right .engineering-block {
+  border-left: 2px solid var(--f1-red);
+  padding-left: 8px;
+  color: #a2aabf;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* Bottom Controls (Audio & Skip) */
+.exact-bottom-actions {
+  position: absolute;
+  bottom: 16px;
+  right: 24px;
+  z-index: 20;
+  display: flex;
+  gap: 10px;
+}
+
+/* Responsive Scaling */
+@media (max-width: 1100px) {
+  .exact-main-stage {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .telemetry-card-exact {
+    display: none;
+  }
+  .flanking-slogans-row {
+    display: none;
+  }
+  .tachometer-center-exact {
+    width: 360px;
+    height: 360px;
+  }
+  .gauge-housing {
+    width: 340px;
+    height: 340px;
+  }
+  .gauge-dial-inner-ring {
+    width: 280px;
+    height: 280px;
+  }
+  .exact-rpm-val {
+    font-size: 2.2rem;
+  }
+  .gauge-bottom-progress-bar-container {
+    margin-top: 320px;
+  }
+}

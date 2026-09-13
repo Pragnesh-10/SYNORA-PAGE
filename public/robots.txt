@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://synora.hackathon.dev/sitemap.xml

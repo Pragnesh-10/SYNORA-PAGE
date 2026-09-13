@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SYNORA 2026 | The Ultimate Freshers Hackathon (F1 Telemetry)</title>
+  <meta name="description" content="SYNORA 2026 is a premier 36-hour motorsport-themed freshers hackathon. Accelerate your code, build high-speed solutions, and compete for ₹1,50,000+ in prizes.">
+  <meta name="theme-color" content="#07080b">
+  
+  <!-- Favicon & PWA Icons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <!-- Open Graph / Facebook / Discord -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://synora.hackathon.dev/">
+  <meta property="og:title" content="SYNORA 2026 | The Ultimate Freshers Hackathon">
+  <meta property="og:description" content="Accelerate your code 0 to 100 in 36 Hours. ₹1,50,000+ prize pool across 6 competition tracks.">
+  <meta property="og:image" content="/f1_pitlane_bg.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SYNORA 2026 | The Ultimate Freshers Hackathon">
+  <meta name="twitter:description" content="Accelerate your code 0 to 100 in 36 Hours. ₹1,50,000+ prize pool across 6 competition tracks.">
+  <meta name="twitter:image" content="/f1_pitlane_bg.jpg">
+  
+  <!-- Preconnect & Preload Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="/src/css/reset.css">
+  <link rel="stylesheet" href="/src/css/carbon-theme.css">
+  <link rel="stylesheet" href="/src/css/loader.css">
+  <link rel="stylesheet" href="/src/css/synora-portal.css">
+</head>
+<body class="carbon-bg">
+
+  <!-- ========================================================
+       F1 MOTORSPORTS TELEMETRY LOADING EXPERIENCE (EXACT REFERENCE UI)
+       ======================================================== -->
+  <div id="f1-loader" role="progressbar" aria-label="Loading SYNORA Telemetry" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+    <div class="loader-vignette-overlay"></div>
+
+    <!-- 1. TOP HEADER ROW -->
+    <header class="exact-header">
+      <!-- Top Left Meta -->
+      <div class="header-meta-left">
+        <div class="app-title">SYNORA.EXE</div>
+        <div>INITIATING</div>
+        <div>SYSTEM CHECK</div>
+        <div>LOADING EXPERIENCE</div>
+      </div>
+
+      <!-- Top Center Brand Logo -->
+      <div class="header-brand-center">
+        <div class="brand-main-title">
+          <span>SYNORA</span>
+          <div class="racing-checkered-flag">
+            <div class="flag-box"></div>
+            <div class="flag-box dim"></div>
+            <div class="flag-box"></div>
+            <div class="flag-box dim"></div>
+            <div class="flag-box dim"></div>
+            <div class="flag-box"></div>
+            <div class="flag-box dim"></div>
+            <div class="flag-box"></div>
+          </div>
+        </div>
+        <div class="brand-subtitle">FRESHERS HACKATHON</div>
+        <div class="brand-tagline">BUILD TODAY. LEAD TOMORROW.</div>
+      </div>
+
+      <!-- Top Right Meta -->
+      <div class="header-meta-right">
+        <div>SPEED</div>
+        <div>IDEAS</div>
+        <div>PEOPLE</div>
+        <div>A BRIGHTER TOMORROW <span class="slash-accent">/</span></div>
+      </div>
+    </header>
+
+    <!-- 2. MAIN TELEMETRY & TACHOMETER STAGE -->
+    <main class="exact-main-stage">
+      
+      <!-- Left Panel: SRM AP INDIA & Track Telemetry -->
+      <aside class="telemetry-card-exact">
+        <div class="track-card-header">
+          <div class="track-location-title">SRM AP</div>
+          <div class="track-location-country">INDIA</div>
+        </div>
+
+        <!-- Formula Track Layout Vector Outline -->
+        <div class="track-svg-container">
+          <svg viewBox="0 0 160 80" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="trackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="50%" stop-color="#00f0ff"/>
+                <stop offset="100%" stop-color="#ff1801"/>
+              </linearGradient>
+            </defs>
+            <!-- F1 Circuit Layout Outline -->
+            <path d="M 25 55 
+                     C 15 55, 10 40, 20 30 
+                     C 30 20, 50 25, 65 18 
+                     C 80 10, 110 12, 130 22 
+                     C 145 30, 150 48, 140 60 
+                     C 130 70, 110 65, 95 62 
+                     C 80 60, 50 68, 38 65 
+                     Z" 
+                  stroke="url(#trackGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Start/Finish Line Marker -->
+            <line x1="20" y1="26" x2="28" y2="34" stroke="#ff1801" stroke-width="3" />
+          </svg>
+        </div>
+
+        <div class="track-telemetry-list">
+          <div class="track-data-row">
+            <span>LAP</span>
+            <span style="color: #fff; font-weight: 700;">01</span>
+          </div>
+          <div class="track-data-row">
+            <span>DRS</span>
+            <span class="val-green">READY</span>
+          </div>
+          <div class="track-data-row">
+            <span>ERS</span>
+            <span class="val-yellow">CHARGING</span>
+          </div>
+          <div class="track-data-row">
+            <span>TYRE</span>
+            <span class="val-red">SOFT</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Centerpiece: 16k RPM Tachometer & Progress Readout -->
+      <div class="tachometer-center-exact">
+        <div class="gauge-housing"></div>
+        <div class="gauge-dial-inner-ring"></div>
+        
+        <!-- SVG Ticks, Scale Numbers, and Redline Arc -->
+        <svg id="gauge-svg-exact" class="gauge-svg-exact" viewBox="0 0 480 480"></svg>
+        
+        <!-- Rotating Needle Layer -->
+        <div class="gauge-needle-wrapper">
+          <div id="gauge-needle-exact" class="needle-pointer">
+            <div class="needle-body-glow"></div>
+          </div>
+        </div>
+
+        <!-- Center Digital Text Readout -->
+        <div class="gauge-center-text-stack">
+          <div id="exact-rpm-val" class="exact-rpm-val">0</div>
+          <div class="exact-rpm-unit">RPM</div>
+          <div id="exact-pct-val" class="exact-pct-val">0%</div>
+          <div class="exact-loading-label">LOADING...</div>
+        </div>
+
+        <!-- Bottom Capsule Progress Bar & Slogan -->
+        <div class="gauge-bottom-progress-bar-container">
+          <div class="pill-progress-track">
+            <div id="pill-progress-fill" class="pill-progress-fill"></div>
+          </div>
+          <div class="pill-slogan">POWERING GREAT IDEAS</div>
+        </div>
+      </div>
+
+      <!-- Right Panel: Systems Check -->
+      <aside class="telemetry-card-exact">
+        <div class="systems-card-title">SYSTEMS CHECK</div>
+        <div class="systems-check-list">
+          <div id="chk-engine" class="system-check-item">
+            <span>ENGINE</span>
+            <span class="check-mark">✓</span>
+          </div>
+          <div id="chk-systems" class="system-check-item">
+            <span>SYSTEMS</span>
+            <span class="check-mark">✓</span>
+          </div>
+          <div id="chk-network" class="system-check-item">
+            <span>NETWORK</span>
+            <span class="check-mark">✓</span>
+          </div>
+          <div id="chk-assets" class="system-check-item">
+            <span>ASSETS</span>
+            <span class="check-mark">✓</span>
+          </div>
+          <div id="chk-track-ready" class="system-check-item">
+            <span>TRACK READY</span>
+            <span id="track-ready-spinner" class="system-spinner"></span>
+            <span id="track-ready-check" class="check-mark" style="display: none;">✓</span>
+          </div>
+        </div>
+      </aside>
+
+    </main>
+
+    <!-- 3. FLANKING SLOGANS (EXACT REFERENCE) -->
+    <div class="flanking-slogans-row">
+      <!-- Bottom Left Slogans -->
+      <div class="flank-left">
+        <div class="passion-block">
+          <div>SAME</div>
+          <div>PASSION</div>
+          <div>DIFFERENT</div>
+          <div>TRACK <span class="slash-accent">/</span></div>
+        </div>
+        <div class="pole-block">
+          <div>IDEAS</div>
+          <div>IN POLE POSITION</div>
+        </div>
+      </div>
+
+      <!-- Bottom Right Slogans -->
+      <div class="flank-right">
+        <div class="future-block">
+          <div>FROM</div>
+          <div>FRESHERS</div>
+          <div>TO</div>
+          <div>THE FUTURE</div>
+        </div>
+        <div class="engineering-block">
+          <div>ENGINEERING</div>
+          <div>A BRIGHTER TOMORROW</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Audio & Skip Action Controls -->
+    <div class="exact-bottom-actions">
+      <button id="btn-audio-toggle" class="btn-telemetry active" aria-label="Toggle V6 Turbo Sound FX">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <span>AUDIO FX: ON</span>
+      </button>
+      <button id="btn-skip-loader" class="btn-telemetry btn-skip" aria-label="Skip to Grid">
+        <span>SKIP TO GRID &rarr;</span>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ========================================================
+       MAIN SYNORA FRESHERS HACKATHON PORTAL
+       ======================================================== -->
+  <div id="synora-app">
+    
+    <!-- Top Navigation Bar -->
+    <nav class="site-nav">
+      <div class="container nav-inner">
+        <div class="brand-group">
+          <a href="#" class="brand-logo">
+            <span class="accent-red">//</span>
+            <span>SYNORA</span>
+            <span style="font-size: 0.75rem; padding: 2px 6px; background: rgba(255, 24, 1, 0.15); border: 1px solid var(--f1-red); color: var(--f1-red); border-radius: 2px;">2026</span>
+          </a>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#tracks">Tracks</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#prizes">Prizes</a></li>
+          <li><a href="#sponsors">Sponsors</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="btn-outline btn-replay-loader" title="Replay the F1 Loading Screen">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 4v6h-6"></path>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+            </svg>
+            <span>REPLAY F1 LAUNCH</span>
+          </button>
+          <a href="#register" class="btn-primary btn-open-reg">
+            <span>REGISTER NOW</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section" id="about">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <span class="pulse-dot red"></span>
+            <span>36-HOUR FRESHERS HACKATHON • REDLINE INNOVATION</span>
+          </div>
+          <h1 class="hero-title">
+            <span class="gradient-text">ACCELERATE YOUR CODE</span><br>
+            <span class="highlight-red">0 TO 100</span> IN 36 HOURS
+          </h1>
+          <p class="hero-desc">
+            SYNORA 2026 is the premier motorsport-engineered hackathon exclusively for freshers. Step into the cockpit, team up with elite developers, and build high-performance software across 6 flagship technology tracks.
+          </p>
+          
+          <div class="hero-cta-group">
+            <button class="btn-primary btn-open-reg" style="padding: 14px 32px; font-size: 0.95rem;">
+              <span>ENTER THE GRID (REGISTER)</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <a href="#tracks" class="btn-outline" style="padding: 14px 24px;">
+              <span>EXPLORE TRACKS</span>
+            </a>
+          </div>
+
+          <!-- Key Stats Bar -->
+          <div class="stats-bar">
+            <div class="stat-card">
+              <div class="stat-value glow-yellow">₹1.5L+</div>
+              <div class="stat-label">Prize Pool</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value glow-cyan">500+</div>
+              <div class="stat-label">Racers (Freshers)</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value glow-green">36 HRS</div>
+              <div class="stat-label">Pitstop Sprint</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value glow-purple">6</div>
+              <div class="stat-label">Flagship Sectors</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right: Live Telemetry Mini-Widget -->
+        <div class="hero-telemetry-widget hud-card">
+          <div class="corner-bracket tl"></div>
+          <div class="corner-bracket tr"></div>
+          <div class="corner-bracket bl"></div>
+          <div class="corner-bracket br"></div>
+
+          <div class="widget-header">
+            <div class="widget-title">
+              <span class="glow-cyan">// LIVE TELEMETRY HUD</span>
+            </div>
+            <div class="status-pill active-red">
+              <span class="pulse-dot red"></span>
+              <span>RACE MODE: ATTACK</span>
+            </div>
+          </div>
+
+          <!-- Mini Gauge Info -->
+          <div class="mini-gauge-container">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+              ENGINE SPEED & SPEEDOMETER
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 8px;">
+              <span id="hero-rpm-val" style="font-family: var(--font-tech); font-size: 2.4rem; font-weight: 900; color: #ffffff;">11,420</span>
+              <span style="font-family: var(--font-mono); color: var(--f1-red); font-weight: 700;">RPM</span>
+            </div>
+            
+            <div class="ers-container" style="width: 100%;">
+              <div class="ers-meta">
+                <span>THROTTLE POSITION</span>
+                <span class="glow-green">100% FULL PEDAL</span>
+              </div>
+              <div class="ers-bar-track">
+                <div id="hero-throttle-fill" class="ers-bar-fill" style="width: 88%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mini-telemetry-stats">
+            <div class="mini-stat-box">
+              <div class="mini-stat-label">TOP SPEED</div>
+              <div id="hero-speed-val" class="mini-stat-val glow-cyan">298 KM/H</div>
+            </div>
+            <div class="mini-stat-box">
+              <div class="mini-stat-label">ACTIVE GEAR</div>
+              <div id="hero-gear-val" class="mini-stat-val glow-yellow">7</div>
+            </div>
+            <div class="mini-stat-box">
+              <div class="mini-stat-label">CIRCUIT TEMP</div>
+              <div class="mini-stat-val" style="color: #fff;">44.2°C</div>
+            </div>
+            <div class="mini-stat-box">
+              <div class="mini-stat-label">GRID STATUS</div>
+              <div class="mini-stat-val glow-green">POLE POSITION</div>
+            </div>
+          </div>
+
+          <!-- Countdown Timer to Green Flag -->
+          <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px;">
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px;">
+              COUNTDOWN TO GREEN FLAG (START)
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center;">
+              <div style="background: rgba(0,0,0,0.5); padding: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <div id="cd-days" style="font-family: var(--font-tech); font-size: 1.2rem; font-weight: 900; color: #fff;">14</div>
+                <div style="font-size: 0.6rem; color: var(--text-muted); font-family: var(--font-mono);">DAYS</div>
+              </div>
+              <div style="background: rgba(0,0,0,0.5); padding: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <div id="cd-hours" style="font-family: var(--font-tech); font-size: 1.2rem; font-weight: 900; color: #fff;">08</div>
+                <div style="font-size: 0.6rem; color: var(--text-muted); font-family: var(--font-mono);">HOURS</div>
+              </div>
+              <div style="background: rgba(0,0,0,0.5); padding: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <div id="cd-mins" style="font-family: var(--font-tech); font-size: 1.2rem; font-weight: 900; color: #fff;">42</div>
+                <div style="font-size: 0.6rem; color: var(--text-muted); font-family: var(--font-mono);">MINS</div>
+              </div>
+              <div style="background: rgba(0,0,0,0.5); padding: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <div id="cd-secs" style="font-family: var(--font-tech); font-size: 1.2rem; font-weight: 900; color: var(--f1-red);">19</div>
+                <div style="font-size: 0.6rem; color: var(--text-muted); font-family: var(--font-mono);">SECS</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+
+    <!-- ========================================================
+         HACKATHON TRACKS SECTION (6 MOTORSPORT SECTORS)
+         ======================================================== -->
+    <section class="section" id="tracks">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">// COMPETITION SECTORS</div>
+          <h2 class="section-title">CHOOSE YOUR RACING TRACK</h2>
+          <p style="color: var(--text-secondary); max-width: 600px; margin: 12px auto 0;">
+            Select from 6 cutting-edge technical disciplines. Each track features dedicated mentors, tailored judging criteria, and bounties.
+          </p>
+          
+          <!-- Category Filter Tabs -->
+          <div style="display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap;">
+            <button class="btn-telemetry track-filter-btn active" data-filter="all">ALL TRACKS</button>
+            <button class="btn-telemetry track-filter-btn" data-filter="ai">AI / ML TURBO</button>
+            <button class="btn-telemetry track-filter-btn" data-filter="web3">WEB3 & DEFI</button>
+            <button class="btn-telemetry track-filter-btn" data-filter="fullstack">FULL STACK KINETIC</button>
+            <button class="btn-telemetry track-filter-btn" data-filter="iot">IOT & HARDWARE</button>
+            <button class="btn-telemetry track-filter-btn" data-filter="cyber">CYBER DEFENSE</button>
+            <button class="btn-telemetry track-filter-btn" data-filter="open">OPEN INNOVATION</button>
+          </div>
+        </div>
+
+        <div class="tracks-grid">
+          <!-- Track 1 -->
+          <div class="track-card hud-card" data-category="ai">
+            <div class="track-header">
+              <span class="track-sector">SECTOR 01</span>
+              <span class="track-icon">⚡</span>
+            </div>
+            <h3 class="track-name">AI & ML Turbocharger</h3>
+            <p class="track-desc">
+              Harness Generative AI, Large Language Models, Multi-agent autonomous systems, and computer vision to build intelligent predictive solutions.
+            </p>
+            <div class="track-tags">
+              <span class="track-tag">LLMs</span>
+              <span class="track-tag">PyTorch</span>
+              <span class="track-tag">Computer Vision</span>
+              <span class="track-tag">RAG</span>
+            </div>
+          </div>
+
+          <!-- Track 2 -->
+          <div class="track-card hud-card" data-category="web3">
+            <div class="track-header">
+              <span class="track-sector">SECTOR 02</span>
+              <span class="track-icon">🌐</span>
+            </div>
+            <h3 class="track-name">Web3 & DeFi Aerodynamics</h3>
+            <p class="track-desc">
+              Engineer decentralized finance protocols, zero-knowledge proofs, smart contract architectures, and decentralized identity systems.
+            </p>
+            <div class="track-tags">
+              <span class="track-tag">Solidity</span>
+              <span class="track-tag">Ethereum</span>
+              <span class="track-tag">ZK Proofs</span>
+              <span class="track-tag">DeFi</span>
+            </div>
+          </div>
+
+          <!-- Track 3 -->
+          <div class="track-card hud-card" data-category="fullstack">
+            <div class="track-header">
+              <span class="track-sector">SECTOR 03</span>
+              <span class="track-icon">🚀</span>
+            </div>
+            <h3 class="track-name">Full Stack Kinetic Engine</h3>
+            <p class="track-desc">
+              Develop ultra-fast, high-concurrency web and mobile applications with sleek user interfaces, microservices, and real-time streaming architectures.
+            </p>
+            <div class="track-tags">
+              <span class="track-tag">Next.js</span>
+              <span class="track-tag">WebSockets</span>
+              <span class="track-tag">GraphQL</span>
+              <span class="track-tag">Cloud Native</span>
+            </div>
+          </div>
+
+          <!-- Track 4 -->
+          <div class="track-card hud-card" data-category="iot">
+            <div class="track-header">
+              <span class="track-sector">SECTOR 04</span>
+              <span class="track-icon">📡</span>
+            </div>
+            <h3 class="track-name">IoT & Embedded Telemetry</h3>
+            <p class="track-desc">
+              Bridge hardware and software by interfacing smart microcontrollers (ESP32/Raspberry Pi), real-time sensor streams, and edge computing nodes.
+            </p>
+            <div class="track-tags">
+              <span class="track-tag">ESP32</span>
+              <span class="track-tag">MQTT</span>
+              <span class="track-tag">Edge AI</span>
+              <span class="track-tag">Robotics</span>
+            </div>
+          </div>
+
+          <!-- Track 5 -->
+          <div class="track-card hud-card" data-category="cyber">
+            <div class="track-header">
+              <span class="track-sector">SECTOR 05</span>
+              <span class="track-icon">🛡️</span>
+            </div>
+            <h3 class="track-name">Cybersecurity Defense Grid</h3>
+            <p class="track-desc">
+              Strengthen digital perimeters with automated vulnerability scanners, threat detection intelligence, cryptographic protocols, and secure sandboxes.
+            </p>
+            <div class="track-tags">
+              <span class="track-tag">Cryptography</span>
+              <span class="track-tag">Zero Trust</span>
+              <span class="track-tag">SIEM</span>
+              <span class="track-tag">AppSec</span>
+            </div>
+          </div>
+
+          <!-- Track 6 -->
+          <div class="track-card hud-card" data-category="open">
+            <div class="track-header">
+              <span class="track-sector">SECTOR 06</span>
+              <span class="track-icon">🏁</span>
+            </div>
+            <h3 class="track-name">Open Innovation Pitlane</h3>
+            <p class="track-desc">
+              Wildcard creativity! Build groundbreaking solutions in Healthcare, Clean Energy, EdTech, or assistive technology with zero constraints.
+            </p>
+            <div class="track-tags">
+              <span class="track-tag">CleanTech</span>
+              <span class="track-tag">HealthTech</span>
+              <span class="track-tag">Social Impact</span>
+              <span class="track-tag">Disruption</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         RACE SCHEDULE (36-HOUR PITSTOP TIMELINE)
+         ======================================================== -->
+    <section class="section" id="schedule" style="background: rgba(9, 11, 16, 0.6);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">// RACE TIMELINE</div>
+          <h2 class="section-title">36-HOUR SPRINT SCHEDULE</h2>
+          <p style="color: var(--text-secondary); max-width: 600px; margin: 12px auto 0;">
+            From Pole Position check-in to the Checkered Flag, here is how the race unfolds.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-item hud-card">
+            <div>
+              <div class="timeline-lap">LAP 01: PIT IN</div>
+              <div class="timeline-time">SATURDAY 09:00 AM</div>
+            </div>
+            <div>
+              <h4 class="timeline-event-title">Check-in, Kit Distribution & Grid Formation</h4>
+              <p class="timeline-event-desc">
+                Arrive at the paddock, collect exclusive SYNORA racer merchandise, meet team members, and configure developer workstations.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item hud-card">
+            <div>
+              <div class="timeline-lap glow-green">LAP 02: GREEN FLAG</div>
+              <div class="timeline-time">SATURDAY 11:00 AM</div>
+            </div>
+            <div>
+              <h4 class="timeline-event-title">Lights Out — 36-Hour Hackathon Commences</h4>
+              <p class="timeline-event-desc">
+                Problem statements unlock across all 6 sectors. Repository commits begin, and teams start crafting their architectures.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item hud-card">
+            <div>
+              <div class="timeline-lap glow-yellow">LAP 03: MENTOR PITSTOP</div>
+              <div class="timeline-time">SATURDAY 06:00 PM & 11:00 PM</div>
+            </div>
+            <div>
+              <h4 class="timeline-event-title">Technical Mentorship & Mid-Race Review</h4>
+              <p class="timeline-event-desc">
+                Industry leads from top tech firms conduct 1-on-1 code reviews, telemetry feedback sessions, and pitch strategy tune-ups.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item hud-card">
+            <div>
+              <div class="timeline-lap glow-red">LAP 04: CODE FREEZE</div>
+              <div class="timeline-time">SUNDAY 04:00 PM</div>
+            </div>
+            <div>
+              <h4 class="timeline-event-title">Final Lap & Repository Lock</h4>
+              <p class="timeline-event-desc">
+                Final commits pushed to GitHub. Live deployment links verified and submitted to the judging telemetries.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item hud-card">
+            <div>
+              <div class="timeline-lap glow-purple">LAP 05: PODIUM</div>
+              <div class="timeline-time">SUNDAY 07:00 PM</div>
+            </div>
+            <div>
+              <h4 class="timeline-event-title">Grand Finale, Top 10 Pitches & Award Ceremony</h4>
+              <p class="timeline-event-desc">
+                Finalist teams present live to judges. Winners crowned on the podium with ₹1,50,000+ prize money and trophies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         PRIZES & PODIUM SECTION
+         ======================================================== -->
+    <section class="section" id="prizes">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">// REWARD TELEMETRY</div>
+          <h2 class="section-title">₹1,50,000+ PRIZE POOL</h2>
+          <p style="color: var(--text-secondary); max-width: 600px; margin: 12px auto 0;">
+            Champion trophies, cash bounties, cloud credits, and direct internship fast-tracks.
+          </p>
+        </div>
+
+        <div class="podium-grid">
+          <!-- P2 (2nd Place) -->
+          <div class="podium-card hud-card">
+            <div class="podium-pos" style="color: #c0c0c0;">P2</div>
+            <div class="podium-title">1st Runner Up</div>
+            <div class="podium-amount">₹45,000</div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; text-align: center;">
+              Silver Trophy + Cloud Credits + Developer Swag Box
+            </p>
+          </div>
+
+          <!-- P1 (Grand Champion) -->
+          <div class="podium-card hud-card p1">
+            <div style="position: absolute; top: -14px; background: var(--f1-red); color: #fff; font-family: var(--font-mono); font-size: 0.72rem; padding: 4px 14px; border-radius: 2px; letter-spacing: 0.15em;">
+              GRAND CHAMPION
+            </div>
+            <div class="podium-pos">P1</div>
+            <div class="podium-title glow-yellow">SYNORA 2026 WINNER</div>
+            <div class="podium-amount">₹75,000</div>
+            <p style="color: var(--text-bright); font-size: 0.95rem; text-align: center;">
+              F1 Crystal Trophy + Direct Internship Interviews + ₹10,000 AWS Credits per member
+            </p>
+          </div>
+
+          <!-- P3 (3rd Place) -->
+          <div class="podium-card hud-card">
+            <div class="podium-pos" style="color: #cd7f32;">P3</div>
+            <div class="podium-title">2nd Runner Up</div>
+            <div class="podium-amount">₹20,000</div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; text-align: center;">
+              Bronze Trophy + Cloud Credits + Exclusive Stickers
+            </p>
+          </div>
+        </div>
+
+        <!-- Special Category Awards -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 980px; margin: 0 auto;">
+          <div class="hud-card" style="padding: 16px 20px; text-align: center;">
+            <div style="font-family: var(--font-tech); font-weight: 700; color: var(--telemetry-cyan);">Best All-Freshers Team</div>
+            <div style="font-family: var(--font-tech); font-size: 1.3rem; font-weight: 900; margin: 4px 0;">₹10,000</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">For the highest scoring 1st-year only team</div>
+          </div>
+          <div class="hud-card" style="padding: 16px 20px; text-align: center;">
+            <div style="font-family: var(--font-tech); font-weight: 700; color: var(--telemetry-green);">Best UI/UX & Aesthetics</div>
+            <div style="font-family: var(--font-tech); font-size: 1.3rem; font-weight: 900; margin: 4px 0;">₹10,000</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">For exceptional visual polish & user experience</div>
+          </div>
+          <div class="hud-card" style="padding: 16px 20px; text-align: center;">
+            <div style="font-family: var(--font-tech); font-weight: 700; color: var(--telemetry-purple);">Fastest Working MVP</div>
+            <div style="font-family: var(--font-tech); font-size: 1.3rem; font-weight: 900; margin: 4px 0;">₹5,000</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">First verified demo deployed in under 12 hours</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         SPONSORS & CONSTRUCTORS
+         ======================================================== -->
+    <section class="section" id="sponsors" style="background: rgba(8, 9, 13, 0.8);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">// PADDOCK PARTNERS</div>
+          <h2 class="section-title">CONSTRUCTORS & SPONSORS</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto;">
+          <div class="hud-card" style="padding: 24px; text-align: center; border-left: 3px solid var(--f1-red);">
+            <div style="font-family: var(--font-tech); font-size: 1.3rem; font-weight: 900; color: #fff;">CLOUD RACING</div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--telemetry-cyan); margin-top: 4px;">TITLE SPONSOR</div>
+          </div>
+          <div class="hud-card" style="padding: 24px; text-align: center; border-left: 3px solid var(--telemetry-cyan);">
+            <div style="font-family: var(--font-tech); font-size: 1.3rem; font-weight: 900; color: #fff;">DEV ACCEL</div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--telemetry-cyan); margin-top: 4px;">TOOLING PARTNER</div>
+          </div>
+          <div class="hud-card" style="padding: 24px; text-align: center; border-left: 3px solid var(--telemetry-green);">
+            <div style="font-family: var(--font-tech); font-size: 1.3rem; font-weight: 900; color: #fff;">AI TELEMETRY</div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--telemetry-cyan); margin-top: 4px;">PLATFORM PARTNER</div>
+          </div>
+          <div class="hud-card" style="padding: 24px; text-align: center; border-left: 3px solid var(--telemetry-purple);">
+            <div style="font-family: var(--font-tech); font-size: 1.3rem; font-weight: 900; color: #fff;">CYBER LABS</div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--telemetry-cyan); margin-top: 4px;">SECURITY PARTNER</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         FAQ SECTION
+         ======================================================== -->
+    <section class="section" id="faq">
+      <div class="container" style="max-width: 860px;">
+        <div class="section-header">
+          <div class="section-tag">// RACE REGULATIONS</div>
+          <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="hud-card" style="padding: 20px 24px;">
+            <h4 style="font-family: var(--font-tech); font-size: 1.1rem; color: #fff; margin-bottom: 8px;">Who is eligible to participate in SYNORA 2026?</h4>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+              SYNORA is open to all university freshers (1st year undergraduate students) across all branches and degree programs. Beginners with zero prior hackathon experience are warmly encouraged to join!
+            </p>
+          </div>
+
+          <div class="hud-card" style="padding: 20px 24px;">
+            <h4 style="font-family: var(--font-tech); font-size: 1.1rem; color: #fff; margin-bottom: 8px;">What is the team size limit?</h4>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+              Teams can have 2 to 4 members. You can register as an already formed team or register individually and match with other racers in our Discord Pitlane.
+            </p>
+          </div>
+
+          <div class="hud-card" style="padding: 20px 24px;">
+            <h4 style="font-family: var(--font-tech); font-size: 1.1rem; color: #fff; margin-bottom: 8px;">Is there any registration fee?</h4>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+              No! Registration is 100% free. Food, refreshments, high-speed Wi-Fi, mentorship, and swags are fully provided for all accepted participants.
+            </p>
+          </div>
+
+          <div class="hud-card" style="padding: 20px 24px;">
+            <h4 style="font-family: var(--font-tech); font-size: 1.1rem; color: #fff; margin-bottom: 8px;">Can I use existing projects or boilerplate code?</h4>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+              All project code must be authored during the 36-hour sprint window. You are welcome to utilize open-source libraries, frameworks, APIs, and AI coding assistants.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer style="border-top: 1px solid rgba(255,255,255,0.08); padding: 50px 0; background: #050608; text-align: center;">
+      <div class="container">
+        <div style="font-family: var(--font-tech); font-size: 1.5rem; font-weight: 900; letter-spacing: 0.15em; margin-bottom: 12px;">
+          <span style="color: var(--f1-red);">//</span> SYNORA 2026
+        </div>
+        <p style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; margin-bottom: 24px;">
+          ENGINEERED FOR FRESHMAN INNOVATORS • REDLINE TO CODE
+        </p>
+        <div style="display: flex; justify-content: center; gap: 20px; font-family: var(--font-tech); font-size: 0.8rem; color: var(--text-secondary);">
+          <a href="#" class="btn-replay-loader glow-cyan" style="text-decoration: underline;">Replay F1 Loading Screen</a>
+          <span>•</span>
+          <a href="#about">Back to Top</a>
+          <span>•</span>
+          <a href="#register" class="btn-open-reg">Register</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+
+  <!-- ========================================================
+       REGISTRATION MODAL
+       ======================================================== -->
+  <div id="reg-modal" class="hud-modal" style="display: none;" aria-hidden="true">
+    <div class="modal-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px;">
+      <div class="hud-card" style="width: 100%; max-width: 540px; padding: 32px; background: #0d0f15; border: 1px solid var(--border-active);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+          <div style="font-family: var(--font-tech); font-size: 1.2rem; font-weight: 700;">
+            <span class="glow-red">//</span> GRID REGISTRATION
+          </div>
+          <button id="btn-close-modal" style="font-family: var(--font-mono); font-size: 1.2rem; color: var(--text-muted);">&times;</button>
+        </div>
+
+        <form id="hackathon-reg-form" style="display: flex; flex-direction: column; gap: 14px;">
+          <div>
+            <label style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">LEAD RACER FULL NAME</label>
+            <input type="text" required placeholder="e.g. Alex Verstappen" style="width: 100%; padding: 10px 14px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); color: #fff; font-family: var(--font-body); border-radius: 2px;">
+          </div>
+          <div>
+            <label style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">COLLEGE EMAIL ADDRESS</label>
+            <input type="email" required placeholder="alex@university.edu" style="width: 100%; padding: 10px 14px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); color: #fff; font-family: var(--font-body); border-radius: 2px;">
+          </div>
+          <div>
+            <label style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">TARGET TRACK SECTOR</label>
+            <select style="width: 100%; padding: 10px 14px; background: #07080b; border: 1px solid rgba(255,255,255,0.15); color: #fff; font-family: var(--font-body); border-radius: 2px;">
+              <option value="ai">AI & ML Turbocharger</option>
+              <option value="web3">Web3 & DeFi Aerodynamics</option>
+              <option value="fullstack">Full Stack Kinetic Engine</option>
+              <option value="iot">IoT & Embedded Telemetry</option>
+              <option value="cyber">Cybersecurity Defense Grid</option>
+              <option value="open">Open Innovation Pitlane</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary" style="margin-top: 10px; width: 100%; justify-content: center; padding: 12px;">
+            <span>CONFIRM GRID POSITION</span>
+          </button>
+        </form>
+
+        <div id="reg-success-msg" style="display: none; text-align: center; padding: 24px 0;">
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">🏁</div>
+          <h3 class="glow-green" style="font-family: var(--font-tech); font-size: 1.3rem; margin-bottom: 8px;">GRID POSITION CONFIRMED!</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Check your inbox for pitlane credentials and Discord access.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================
+       FLOATING HUD CONTROL BAR
+       ======================================================== -->
+  <aside class="floating-hud">
+    <button class="btn-telemetry btn-replay-loader" title="Replay the F1 Loading Screen">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M23 4v6h-6"></path>
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+      </svg>
+      <span>REPLAY LAUNCH</span>
+    </button>
+    <button id="hud-audio-btn" class="btn-telemetry" title="Toggle V6 Turbo Sound">
+      <span>🔇 AUDIO FX</span>
+    </button>
+    <button class="btn-primary btn-open-reg" style="padding: 6px 14px; font-size: 0.75rem;">
+      <span>REGISTER P1</span>
+    </button>
+  </aside>
+
+  <!-- JavaScript Entry Point -->
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
