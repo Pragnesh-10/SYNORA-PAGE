@@ -102,7 +102,7 @@
               </linearGradient>
             </defs>
             <!-- F1 Circuit Layout Outline -->
-            <path d="M 25 55 
+            <path id="srm-circuit-path" d="M 25 55 
                      C 15 55, 10 40, 20 30 
                      C 30 20, 50 25, 65 18 
                      C 80 10, 110 12, 130 22 
@@ -111,10 +111,17 @@
                      C 80 60, 50 68, 38 65 
                      Z" 
                   stroke="url(#trackGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Live Orbiting Telemetry Point -->
+            <g>
+              <circle r="3.5" fill="#ff1801" stroke="#ffffff" stroke-width="1.5">
+                <animateMotion dur="3.6s" repeatCount="indefinite" path="M 25 55 C 15 55, 10 40, 20 30 C 30 20, 50 25, 65 18 C 80 10, 110 12, 130 22 C 145 30, 150 48, 140 60 C 130 70, 110 65, 95 62 C 80 60, 50 68, 38 65 Z" />
+              </circle>
+            </g>
             <!-- Start/Finish Line Marker -->
             <line x1="20" y1="26" x2="28" y2="34" stroke="#ff1801" stroke-width="3" />
           </svg>
         </div>
+
 
         <div class="track-telemetry-list">
           <div class="track-data-row">

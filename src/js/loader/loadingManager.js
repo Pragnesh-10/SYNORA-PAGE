@@ -20,8 +20,8 @@ export class LoadingManager {
     
     this.realProgress = 0.05;
     this.displayProgress = 0;
-    this.minDurationMs = 2100; // ~2.1 seconds optimal F1 launch acceleration
-    this.startTime = performance.now();
+    this.minDurationMs = 2300; // ~2.3 seconds optimal F1 launch acceleration
+    this.startTime = null;
     this.isFinished = false;
     this.isLaunching = false;
 
@@ -114,37 +114,47 @@ export class LoadingManager {
       this.audioEngine.play();
     }
 
+    this.startTime = null;
+
     const tick = (now) => {
       if (this.isFinished) return;
 
-      const elapsed = now - this.startTime;
+      if (!this.startTime) {
+        this.startTime = now;
+      }
+
+      const elapsed = Math.max(0, now - this.startTime);
       const timeFraction = Math.min(elapsed / this.minDurationMs, 1.0);
 
-      // Authentic F1 acceleration curve (easeInQuad into explosive top end)
-      const easedTime = Math.pow(timeFraction, 1.25);
+      // Progressive F1 throttle acceleration curve
+      const easedTime = Math.pow(timeFraction, 1.12);
       
       // Target progress merges real page progress with smooth time progression
-      const targetProgress = Math.min(Math.max(this.realProgress * 0.7 + easedTime * 0.3, easedTime * 0.95), 1.0);
+      const targetProgress = Math.min(Math.max(this.realProgress * 0.7 + easedTime * 0.3, easedTime), 1.0);
 
       // Smooth step towards target
-      this.displayProgress += (targetProgress - this.displayProgress) * 0.12;
+      this.displayProgress += (targetProgress - this.displayProgress) * 0.16;
 
-      // Find active asset text
-      const currentStage = this.assetStages.find(s => this.displayProgress <= s.threshold) || this.assetStages[this.assetStages.length - 1];
+      if (timeFraction >= 1.0 && Math.abs(1.0 - this.displayProgress) < 0.015) {
+        this.displayProgress = 1.0;
+      }
 
       // Update Tachometer, Telemetry, and Audio
-      this.tachometer.setProgress(this.displayProgress);
-      const currentRpm = this.tachometer.currentRpm;
-      if (this.shiftLights) this.shiftLights.update(currentRpm);
+      if (this.tachometer) {
+        this.tachometer.setProgress(this.displayProgress);
+        const currentRpm = this.tachometer.currentRpm;
+        if (this.shiftLights) this.shiftLights.update(currentRpm);
+        if (this.audioEngine) this.audioEngine.updateRpm(currentRpm);
+      }
+
       if (this.telemetry) this.telemetry.update(this.displayProgress);
-      if (this.audioEngine) this.audioEngine.updateRpm(currentRpm);
       if (this.carMotion) this.carMotion.setProgress(this.displayProgress);
 
-      // Check for completion (elapsed >= minDuration AND displayProgress >= 0.995)
+      // Check for completion (elapsed >= minDuration AND displayProgress >= 0.99)
       if (timeFraction >= 1.0 && this.displayProgress >= 0.99 && !this.isLaunching) {
         this.isLaunching = true;
         this.displayProgress = 1.0;
-        this.tachometer.setProgress(1.0);
+        if (this.tachometer) this.tachometer.setProgress(1.0);
         if (this.telemetry) this.telemetry.update(1.0);
         if (this.carMotion) this.carMotion.setProgress(1.0);
         this.triggerLaunchSequence();
@@ -171,16 +181,16 @@ export class LoadingManager {
       lights.forEach((light, i) => {
         setTimeout(() => {
           light.classList.add('lit');
-          this.audioEngine.playBeep(950 + i * 80, 0.08);
+          if (this.audioEngine) this.audioEngine.playBeep(950 + i * 80, 0.08);
         }, i * 160);
       });
 
-      // After 5 lights are ON: Brief tension pause (~400ms), then LIGHTS OUT!
-      const totalLightTime = lights.length * 160 + 400;
+      // After 5 lights are ON: Brief tension pause (~350ms), then LIGHTS OUT!
+      const totalLightTime = lights.length * 160 + 350;
       setTimeout(() => {
         // LIGHTS OUT!
         lights.forEach(l => l.classList.remove('lit'));
-        this.audioEngine.playLaunchSequence();
+        if (this.audioEngine) this.audioEngine.playLaunchSequence();
 
         // Trigger F1 Car Hyper-speed Blast across finish line
         if (this.carMotion) {
@@ -233,12 +243,12 @@ export class LoadingManager {
   /**
    * Replays the F1 Launch Loading Animation
    */
-  replay(minDurationMs = 2200) {
+  replay(minDurationMs = 2300) {
     this.isFinished = false;
     this.isLaunching = false;
     this.displayProgress = 0;
     this.minDurationMs = minDurationMs;
-    this.startTime = performance.now();
+    this.startTime = null;
 
     if (this.loaderElement) {
       this.loaderElement.classList.remove('loader-hidden', 'launching');
@@ -249,7 +259,7 @@ export class LoadingManager {
       lights.forEach(l => l.classList.remove('lit'));
     }
 
-    this.tachometer.setProgress(0);
+    if (this.tachometer) this.tachometer.setProgress(0);
     if (this.shiftLights) this.shiftLights.reset();
     if (this.telemetry) this.telemetry.reset();
     if (this.carMotion) this.carMotion.reset();

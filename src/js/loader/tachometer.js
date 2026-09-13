@@ -1,7 +1,8 @@
 /**
  * F1 Tachometer Gauge Controller - Exact Reference UI
  * Handles SVG circular dial generation, tick marks matching reference,
- * physics-based needle smoothing, and redline visual activation.
+ * physics-based needle smoothing, dynamic active progress arc,
+ * and bright leading telemetry loading point.
  */
 
 export class Tachometer {
@@ -29,7 +30,7 @@ export class Tachometer {
   }
 
   /**
-   * Generates the SVG Dial Ticks, Numbers, and Glow Arcs
+   * Generates the SVG Dial Ticks, Numbers, Glow Arcs, and Dynamic Progress Layer
    */
   initGaugeSvg() {
     if (!this.svgElement) return;
@@ -46,10 +47,19 @@ export class Tachometer {
           <feGaussianBlur stdDeviation="5" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over"/>
         </filter>
+        <filter id="activePointGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+        <linearGradient id="gaugeProgressGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+          <stop offset="60%" stop-color="#ff3300" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#ff1801" stop-opacity="1"/>
+        </linearGradient>
       </defs>
     `;
 
-    // 1. Redline Glowing Outer Arc (from 11k to 16k RPM)
+    // 1. Redline Background Outer Arc (from 11k to 16k RPM)
     const redlineStartFraction = 11000 / this.maxRpm;
     const redlineStartDeg = this.startAngle + redlineStartFraction * this.sweepAngle;
     const redlineEndDeg = this.startAngle + this.sweepAngle;
@@ -69,7 +79,12 @@ export class Tachometer {
             fill="none" stroke="#ff1801" stroke-width="3" stroke-linecap="round" />
     `;
 
-    // 2. Dial Ticks and Major Numbers (0, 2, 4, 6, 8, 10, 12, 14, 16)
+    // 2. Dynamic Active Progress Arc (fills as RPM increases)
+    svgHtml += `
+      <path id="gauge-active-arc" d="" fill="none" stroke="url(#gaugeProgressGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#exactRedlineGlow)" opacity="0" />
+    `;
+
+    // 3. Dial Ticks and Major Numbers (0, 2, 4, 6, 8, 10, 12, 14, 16)
     const totalTicks = 80; // every 200 RPM
     for (let i = 0; i <= totalTicks; i++) {
       const rpm = (i / totalTicks) * this.maxRpm;
@@ -121,6 +136,15 @@ export class Tachometer {
       }
     }
 
+    // 4. Dynamic Moving Loading Point (Bead/Dot that travels along the circumference with the needle)
+    svgHtml += `
+      <g id="gauge-active-point-group" style="display: none;">
+        <circle id="gauge-point-halo" cx="0" cy="0" r="9" fill="rgba(255, 24, 1, 0.45)" filter="url(#activePointGlow)" />
+        <circle id="gauge-point-ring" cx="0" cy="0" r="5" fill="#ff1801" />
+        <circle id="gauge-point-core" cx="0" cy="0" r="2.5" fill="#ffffff" />
+      </g>
+    `;
+
     this.svgElement.innerHTML = svgHtml;
   }
 
@@ -130,7 +154,7 @@ export class Tachometer {
   startAnimationLoop() {
     const loop = () => {
       const diff = this.targetRpm - this.currentRpm;
-      this.currentRpm += diff * 0.085;
+      this.currentRpm += diff * 0.12;
 
       if (Math.abs(diff) < 2) {
         this.currentRpm = this.targetRpm;
@@ -155,22 +179,60 @@ export class Tachometer {
   }
 
   /**
-   * Updates needle rotation and DOM numbers
+   * Updates needle rotation, active progress arc, moving loading point, and DOM numbers
    */
   updateVisuals(rpm, fraction, angle) {
+    // 1. Needle Rotation
     if (this.needleElement) {
       this.needleElement.style.transform = `rotate(${angle}deg)`;
     }
 
+    // 2. Active Arc & Circumference Loading Point
+    const cx = 240;
+    const cy = 240;
+    const radius = 195;
+
+    const activeArc = document.getElementById('gauge-active-arc');
+    const activePoint = document.getElementById('gauge-active-point-group');
+
+    if (fraction > 0.005) {
+      const startRad = (this.startAngle - 90) * Math.PI / 180;
+      const endRad = (angle - 90) * Math.PI / 180;
+
+      const sx = cx + radius * Math.cos(startRad);
+      const sy = cy + radius * Math.sin(startRad);
+      const ex = cx + radius * Math.cos(endRad);
+      const ey = cy + radius * Math.sin(endRad);
+
+      const sweepSpan = fraction * this.sweepAngle;
+      const largeArc = sweepSpan > 180 ? 1 : 0;
+
+      if (activeArc) {
+        activeArc.setAttribute('d', `M ${sx} ${sy} A ${radius} ${radius} 0 ${largeArc} 1 ${ex} ${ey}`);
+        activeArc.style.opacity = '1';
+      }
+
+      if (activePoint) {
+        activePoint.setAttribute('transform', `translate(${ex}, ${ey})`);
+        activePoint.style.display = 'block';
+      }
+    } else {
+      if (activeArc) activeArc.style.opacity = '0';
+      if (activePoint) activePoint.style.display = 'none';
+    }
+
+    // 3. Digital RPM Readout
     if (this.rpmDisplay) {
       this.rpmDisplay.textContent = Math.round(rpm).toLocaleString();
     }
 
+    // 4. Percentage Readout
     if (this.pctDisplay) {
       const pct = Math.round(fraction * 100);
       this.pctDisplay.textContent = `${pct}%`;
     }
 
+    // 5. Capsule Progress Fill
     if (this.progressFill) {
       this.progressFill.style.width = `${(fraction * 100).toFixed(1)}%`;
     }
